@@ -1,0 +1,29 @@
+components:
+- layout_properties: {grid_position: 'WAJLWR,JDTOQM'}
+  name: tb_username
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'GJRNIA,QMPXSO'}
+  name: tb_email
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'OSORNP,YDMZCN'}
+  name: tb_password
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'NZLHOA,QMATFZ'}
+  name: lbl_error
+  properties: {}
+  type: Label
+- event_bindings: {}
+  layout_properties: {grid_position: 'EQXKVN,JZPUDH'}
+  name: btn_create
+  properties: {text: Create Account}
+  type: Button
+- event_bindings: {}
+  layout_properties: {grid_position: 'JIILEV,KOOYSG'}
+  name: btn_go_login
+  properties: {text: 'Already have an account? Login'}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true
