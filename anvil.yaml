@@ -54,6 +54,14 @@ db_schema:
       client_hidden: false
       name: total_entries
       type: number
+    - admin_ui: {order: 6, width: 200}
+      client_hidden: false
+      name: celebrated_30
+      type: bool
+    - admin_ui: {order: 7, width: 200}
+      client_hidden: false
+      name: celebrated_50
+      type: bool
     server: full
     title: user_stats
   users:
@@ -110,7 +118,7 @@ db_schema:
       type: string
     server: full
     title: word_bank
-metadata: {description: Journal, logo_img: 'asset:Screenshot 2026-03-17 023923.png', title: Kettering}
+metadata: {description: Writing down a problem solves half of it., logo_img: 'asset:Screenshot 2026-03-17 023923.png', title: Kidlin's Journal}
 name: tigercode-app
 native_deps:
   head_html: |-

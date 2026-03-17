@@ -138,26 +138,29 @@ class NewEntry(NewEntryTemplate):
     result = anvil.server.call('save_entry', title, body, self.selected_tags)
 
     if result == "success":
-      streak_data = anvil.server.call('update_streak')
-      streak = streak_data['current_streak']
-      day_word = "day" if streak == 1 else "days"
+      try:
+        streak_data = anvil.server.call('update_streak')
+        streak = streak_data['current_streak']
+        day_word = "day" if streak == 1 else "days"
 
-      if streak_data['first_today']:
-        if streak % 100 == 0:
-          alert("Incredible! " + str(streak) + " days! You are absolutely unstoppable! 🏆🏆🏆")
-        elif streak_data.get('anniversary'):
-          years = streak_data['years']
-          year_word = "year" if years == 1 else "years"
-          alert(str(years) + " " + year_word + " since you started this streak! You've been going for " + str(streak) + " days strong! Keep it up! 🌟🌟🌟")
-        elif streak == 30 and not streak_data.get('celebrated_30'):
-          alert("30 days! A whole month of journaling! You should be incredibly proud of yourself! 🎊🎊🎊")
-        elif streak == 50 and not streak_data.get('celebrated_50'):
-          alert("50 days! You're on fire! Halfway to 100, keep rocking! 🔥🔥")
-        elif streak % 7 == 0:
-          alert(str(streak // 7) + " week" + ("s" if streak // 7 > 1 else "") + " strong! " + str(streak) + " days in a row. Great work! ⭐")
+        if streak_data['first_today']:
+          if streak % 100 == 0:
+            alert("Incredible! " + str(streak) + " days! You are absolutely unstoppable! 🏆🏆🏆")
+          elif streak_data.get('anniversary'):
+            years = streak_data['years']
+            year_word = "year" if years == 1 else "years"
+            alert(str(years) + " " + year_word + " since you started this streak! You've been going for " + str(streak) + " days strong! Keep it up! 🌟🌟🌟")
+          elif streak == 30 and streak_data.get('celebrated_30'):
+            alert("30 days! A whole month of journaling! You should be incredibly proud of yourself! 🎊🎊🎊")
+          elif streak == 50 and streak_data.get('celebrated_50'):
+            alert("50 days! You're on fire! Halfway to 100, keep rocking! 🔥🔥")
+          elif streak % 7 == 0:
+            alert(str(streak // 7) + " week" + ("s" if streak // 7 > 1 else "") + " strong! " + str(streak) + " days in a row. Great work! ⭐")
+          else:
+            alert("Entry saved! Great job writing today! 🎉 You're on a " + str(streak) + " " + day_word + " streak!")
         else:
-          alert("Entry saved! Great job writing today! 🎉 You're on a " + str(streak) + " " + day_word + " streak!")
-      else:
+          alert("Entry saved! 🎉 Great job writing today!")
+      except Exception as e:
         alert("Entry saved! 🎉 Great job writing today!")
       open_form('Home')
     else:
