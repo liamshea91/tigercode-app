@@ -7,7 +7,12 @@ components:
   name: btn_word_bank
   properties: {text: Word Bank}
   type: Button
-- layout_properties: {grid_position: 'ZGMZXC,WSVXLP'}
+- components:
+  - layout_properties: {grid_position: 'CWKGPH,GKFZYN'}
+    name: pane_word_bank
+    properties: {}
+    type: ColumnPanel
+  layout_properties: {grid_position: 'OXYUNZ,XWMBYK'}
   name: panel_word_bank
   properties: {}
   type: ColumnPanel
@@ -19,14 +24,6 @@ components:
   name: lbl_tags
   properties: {}
   type: Label
-- layout_properties: {grid_position: 'YJUFNI,XRVREX'}
-  name: lbl_error
-  properties: {}
-  type: Label
-- layout_properties: {grid_position: 'NSQYKK,IBWNRY'}
-  name: pane_word_bank
-  properties: {}
-  type: ColumnPanel
 - layout_properties: {grid_position: 'WHITQK,TARSPW'}
   name: btn_save
   properties: {text: save Entry}
@@ -36,5 +33,9 @@ components:
   name: btn_back
   properties: {text: Back}
   type: Button
+- layout_properties: {grid_position: 'XKXFPA,UXFZGC'}
+  name: lbl_error
+  properties: {}
+  type: Label
 container: {type: ColumnPanel}
 is_package: true

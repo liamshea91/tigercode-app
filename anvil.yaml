@@ -33,12 +33,13 @@ db_schema:
       type: string
     server: full
     title: Users
-name: Material Design 6
+metadata: {description: Journal, logo_img: 'asset:Screenshot 2026-03-17 023923.png', title: Kettering}
+name: tigercode-app
 native_deps:
   head_html: |-
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
-package_name: Material_Design_6
+package_name: tigercode_app
 runtime_options:
   client_version: '3'
   legacy_features: {bootstrap3: true, class_names: true}

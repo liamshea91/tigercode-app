@@ -12,12 +12,22 @@ class Settings(SettingsTemplate):
 
     self.background = "#494547"
 
-    for lbl in [self.lbl_current_username, self.lbl_current_email]:
+    # Title
+    self.lbl_title.text = "Settings"
+    self.lbl_title.foreground = "#d4b2e4"
+    self.lbl_title.font = "Libre Baskerville"
+    self.lbl_title.font_size = 24
+    self.lbl_title.bold = True
+    self.lbl_title.align = "center"
+
+    # Current info labels
+    for lbl in [self.lbl_current_username, self.lbl_current_email, self.lbl_email, self.lbl_username, self.change_username, self.change_password]:
       lbl.foreground = "#d4b2e4"
       lbl.font = "Libre Baskerville"
       lbl.font_size = 14
       lbl.align = "center"
 
+    # Error and success labels
     self.lbl_error.text = ""
     self.lbl_error.foreground = "#d4b2e4"
     self.lbl_error.font = "Red Hat Text"
@@ -30,6 +40,7 @@ class Settings(SettingsTemplate):
     self.lbl_success.font_size = 12
     self.lbl_success.align = "center"
 
+    # Text boxes
     for tb in [self.tb_current_password, self.tb_new_username, self.tb_confirm_username, self.tb_new_password, self.tb_confirm_password]:
       tb.background = "#ececec"
       tb.foreground = "#3b3b3b"
@@ -43,6 +54,7 @@ class Settings(SettingsTemplate):
     self.tb_new_password.placeholder = "New Password"
     self.tb_confirm_password.placeholder = "Confirm New Password"
 
+    # Buttons
     for btn in [self.btn_save, self.btn_back]:
       btn.background = "#d4b2e4"
       btn.foreground = "#49326b"
