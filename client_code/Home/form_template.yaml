@@ -1,7 +1,25 @@
 components:
-- layout_properties: {grid_position: 'DCSVYN,IEMIWM'}
-  name: label_1
-  properties: {text: slime you DID it}
+- layout_properties: {grid_position: 'RWYGNB,DWTHIS'}
+  name: lbl_welcome
+  properties: {align: center, text: 'Welcome, [username]!'}
   type: Label
+- layout_properties: {grid_position: 'YZNPGC,FFEURE'}
+  name: btn_new_entry
+  properties: {text: New Entry}
+  type: Button
+- layout_properties: {grid_position: 'TLDSJB,XOGHTR'}
+  name: btn_past_entries
+  properties: {text: Past entries}
+  type: Button
+- event_bindings: {}
+  layout_properties: {grid_position: 'USPJPN,HLXGOX'}
+  name: btn_settings
+  properties: {text: settings}
+  type: Button
+- event_bindings: {}
+  layout_properties: {grid_position: 'TWGRBS,SFUFVK'}
+  name: btn_logout
+  properties: {text: Log out}
+  type: Button
 container: {type: ColumnPanel}
 is_package: true
