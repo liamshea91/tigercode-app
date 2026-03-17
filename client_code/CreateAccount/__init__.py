@@ -7,6 +7,7 @@ class CreateAccount(CreateAccountTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     self.lbl_error.text = ""
+    anvil.server.call('create_default_admin')
 
   @handle("btn_create", "click")
   def btn_create_click(self, **event_args):
