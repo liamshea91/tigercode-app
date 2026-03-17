@@ -1,38 +1,115 @@
 allow_embedding: false
 db_schema:
+  entries:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: user
+      target: users
+      type: link_single
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: title
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: body
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: tags
+      type: simpleObject
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: created_on
+      type: datetime
+    server: full
+    title: entries
+  user_stats:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: user
+      target: users
+      type: link_single
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: current_streak
+      type: number
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: longest_streak
+      type: number
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: streak_started
+      type: datetime
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: first_entry
+      type: datetime
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: total_entries
+      type: number
+    server: full
+    title: user_stats
   users:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 200}
-      client_hidden: false
-      name: email
-      type: string
-    - admin_ui: {order: 1, width: 200}
-      client_hidden: false
-      name: enabled
-      type: bool
-    - admin_ui: {order: 2, width: 200}
-      client_hidden: false
-      name: last_login
-      type: datetime
-    - admin_ui: {order: 3, width: 200}
-      client_hidden: false
-      name: password_hash
-      type: string
-    - admin_ui: {order: 4, width: 200}
-      client_hidden: false
-      name: n_password_failures
-      type: number
-    - admin_ui: {order: 5, width: 200}
-      client_hidden: false
-      name: confirmed_email
-      type: bool
-    - admin_ui: {order: -1, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: username
       type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: email
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: enabled
+      type: bool
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: last_login
+      type: datetime
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: password_hash
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: n_password_failures
+      type: number
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: confirmed_email
+      type: bool
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: signed_up
+      type: datetime
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: email_confirmation_key
+      type: string
     server: full
     title: Users
+  word_bank:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: word
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: category
+      type: string
+    server: full
+    title: word_bank
 metadata: {description: Journal, logo_img: 'asset:Screenshot 2026-03-17 023923.png', title: Kettering}
 name: tigercode-app
 native_deps:

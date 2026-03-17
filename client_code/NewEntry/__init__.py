@@ -139,14 +139,29 @@ class NewEntry(NewEntryTemplate):
 
     if result == "success":
       streak_data = anvil.server.call('update_streak')
-    if streak_data['first_today']:
-      if streak_data['current_streak'] == 1:
-        alert("🎉 Great job writing today! You've started a new streak!")
+      streak = streak_data['current_streak']
+      day_word = "day" if streak == 1 else "days"
+
+      if streak_data['first_today']:
+        if streak % 100 == 0:
+          alert("Incredible! " + str(streak) + " days! You are absolutely unstoppable! 🏆🏆🏆")
+        elif streak_data.get('anniversary'):
+          years = streak_data['years']
+          year_word = "year" if years == 1 else "years"
+          alert(str(years) + " " + year_word + " since you started this streak! You've been going for " + str(streak) + " days strong! Keep it up! 🌟🌟🌟")
+        elif streak == 30 and not streak_data.get('celebrated_30'):
+          alert("30 days! A whole month of journaling! You should be incredibly proud of yourself! 🎊🎊🎊")
+        elif streak == 50 and not streak_data.get('celebrated_50'):
+          alert("50 days! You're on fire! Halfway to 100, keep rocking! 🔥🔥")
+        elif streak % 7 == 0:
+          alert(str(streak // 7) + " week" + ("s" if streak // 7 > 1 else "") + " strong! " + str(streak) + " days in a row. Great work! ⭐")
+        else:
+          alert("Entry saved! Great job writing today! 🎉 You're on a " + str(streak) + " " + day_word + " streak!")
       else:
-        alert("🎉 Amazing! You're on a " + str(streak_data['current_streak']) + " day streak! Keep it up!")
+        alert("Entry saved! 🎉 Great job writing today!")
+      open_form('Home')
     else:
-      alert("🎉 Entry saved! Great job writing today!")
-    open_form('Home')
+      self.lbl_error.text = "Something went wrong. Please try again."
 
   @handle("btn_back", "click")
   def btn_back_click(self, **event_args):

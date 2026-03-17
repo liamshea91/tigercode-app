@@ -3,32 +3,32 @@ components:
   name: lbl_title
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'WQSUNA,XMAPKR'}
-  name: label_1
+- layout_properties: {grid_position: 'CLCFHQ,IZRSTJ'}
+  name: lbl_streak_header
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'DBEFNM,VXFNNF'}
-  name: label_2
+- layout_properties: {grid_position: 'CLCFHQ,HDDPIF XPFWLN,JCVZQR'}
+  name: lbl_current_streak
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'DEHNGA,TQJRWN'}
-  name: label_3
+- layout_properties: {grid_position: 'CLCFHQ,HDDPIF VFCIII,JWNXZI'}
+  name: lbl_streak_started
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'XMFVBC,MDIXRJ'}
-  name: label_4
+- layout_properties: {grid_position: 'CLCFHQ,HDDPIF TXBMVK,UBHPTR'}
+  name: lbl_longest_streak
   properties: {align: center}
   type: Label
 - layout_properties: {grid_position: 'BTBKYH,MHRAKB'}
-  name: label_5
+  name: lbl_general_header
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'ORAUCP,FXEAKA'}
-  name: label_6
+- layout_properties: {grid_position: 'BTBKYH,DPKIJW VZHCOX,USNODF'}
+  name: lbl_first_entry
   properties: {align: center}
   type: Label
-- layout_properties: {grid_position: 'AKOZSZ,IOUPUU'}
-  name: label_7
+- layout_properties: {grid_position: 'BTBKYH,DPKIJW VWDJDJ,PZJJLM'}
+  name: lbl_total_entries
   properties: {align: center}
   type: Label
 - layout_properties: {grid_position: 'XXLIMQ,NNMKGU'}
