@@ -1,0 +1,40 @@
+components:
+- layout_properties: {grid_position: 'JZNIXR,WBICPV'}
+  name: tb_title
+  properties: {placeholder: Entry Title}
+  type: TextBox
+- layout_properties: {grid_position: 'KNZNKJ,KPPCDG'}
+  name: btn_word_bank
+  properties: {text: Word Bank}
+  type: Button
+- layout_properties: {grid_position: 'ZGMZXC,WSVXLP'}
+  name: panel_word_bank
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'EDVCEK,OEJQNE'}
+  name: ta_body
+  properties: {placeholder: Write you entry here!, text: ''}
+  type: TextArea
+- layout_properties: {grid_position: 'ZGETAW,XNSTXZ'}
+  name: lbl_tags
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'YJUFNI,XRVREX'}
+  name: lbl_error
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'NSQYKK,IBWNRY'}
+  name: pane_word_bank
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'WHITQK,TARSPW'}
+  name: btn_save
+  properties: {text: save Entry}
+  type: Button
+- data_bindings: []
+  layout_properties: {grid_position: 'NUZNCB,BOFBWO'}
+  name: btn_back
+  properties: {text: Back}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true

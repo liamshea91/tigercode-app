@@ -69,3 +69,21 @@ def update_user_settings(current_password, new_username, new_password):
   if new_password:
     anvil.users.reset_password(user['email'], new_password)
   return "success"
+
+  @anvil.server.callable
+  def get_word_bank():
+    words = app_tables.word_bank.search()
+    return [(row['word'], row['category']) for row in words]
+
+@anvil.server.callable
+def save_entry(title, body, tags):
+  user = anvil.users.get_user()
+  from datetime import datetime
+  app_tables.entries.add_row(
+    user=user,
+    title=title,
+    body=body,
+    tags=tags,
+    created_on=datetime.now()
+  )
+  return "success"

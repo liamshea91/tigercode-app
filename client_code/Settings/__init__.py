@@ -18,8 +18,8 @@ class Settings(SettingsTemplate):
     self.tb_confirm_password.placeholder = "Confirm New Password"
     user = anvil.users.get_user()
     if user:
-      self.lbl_current_username.text = "Username: " + user['username']
-      self.lbl_current_email.text = "Email: " + user['email']
+      self.lbl_current_username.text = user['username']
+      self.lbl_current_email.text = user['email']
     else:
       open_form('Login')
 
@@ -30,3 +30,50 @@ class Settings(SettingsTemplate):
     confirm_username = self.tb_confirm_username.text.strip()
     new_password = self.tb_new_password.text.strip()
     confirm_password = self.tb_confirm_password.text.strip()
+
+    if not current_password:
+      self.lbl_error.text = "Please enter your current password to make changes."
+      return
+
+    if not new_username and not new_password:
+      self.lbl_error.text = "Please fill in at least one field to update."
+      return
+
+    if new_username and new_username != confirm_username:
+      self.lbl_error.text = "Usernames do not match."
+      return
+
+    if new_password and new_password != confirm_password:
+      self.lbl_error.text = "Passwords do not match."
+      return
+
+    validation = anvil.server.call('validate_settings', current_password, new_username)
+
+    if validation == "wrong_password":
+      self.lbl_error.text = "Current password is incorrect."
+      return
+    elif validation == "username_taken":
+      self.lbl_error.text = "That username is already taken."
+      return
+
+    confirmed = confirm("Are you sure you want to save these changes?")
+    if not confirmed:
+      return
+
+    result = anvil.server.call('update_user_settings', current_password, new_username, new_password)
+
+    if result == "success":
+      alert("Changes saved successfully!")
+      self.lbl_error.text = ""
+      user = anvil.users.get_user()
+      self.lbl_current_username.text = user['username']
+      self.lbl_current_email.text = user['email']
+      self.tb_current_password.text = ""
+      self.tb_new_username.text = ""
+      self.tb_confirm_username.text = ""
+      self.tb_new_password.text = ""
+      self.tb_confirm_password.text = ""
+
+  @handle("btn_back", "click")
+  def btn_back_click(self, **event_args):
+    open_form('Home')
