@@ -177,3 +177,5 @@ roles:
   name: dense
 - components: [Link]
   name: selected
+- components: []
+  name: html

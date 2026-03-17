@@ -1,0 +1,31 @@
+components:
+- layout_properties: {grid_position: 'ZENHQO,JDSPSI XDKGPR,NYKVXC'}
+  name: btn_edit
+  properties: {text: Edit}
+  type: Button
+- layout_properties: {grid_position: 'ZENHQO,JDSPSI VLMSNR,XGUAAK'}
+  name: btn_delete
+  properties: {text: Delete}
+  type: Button
+- layout_properties: {grid_position: 'ZENHQO,JDSPSI HWUMFG,BYWHNB'}
+  name: btn_back
+  properties: {text: Back}
+  type: Button
+- layout_properties: {grid_position: 'ZENHQO,UYAOWC QTTUUY,GFOLBA'}
+  name: lbl_title
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'ZENHQO,UYAOWC SXZDHB,XMSBPF'}
+  name: lbl_date
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'ZENHQO,UYAOWC PRCVJJ,RBHMWH'}
+  name: lbl_tags
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'ZENHQO,UYAOWC CQORCM,EEQNDS'}
+  name: lbl_body
+  properties: {}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true

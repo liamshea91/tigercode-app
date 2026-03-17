@@ -85,3 +85,81 @@ def save_entry(title, body, tags):
     created_on=datetime.now()
   )
   return "success"
+
+@anvil.server.callable
+def get_entries(keyword, tag, date_from, date_to):
+  user = anvil.users.get_user()
+  entries = app_tables.entries.search(
+    tables.order_by("created_on", ascending=False),
+    user=user
+  )
+  results = []
+  for entry in entries:
+    if keyword and keyword.lower() not in entry['title'].lower() and keyword.lower() not in entry['body'].lower():
+      continue
+    if tag:
+      entry_tags = [t.lower() for t in (entry['tags'] or [])]
+      if tag.lower() not in entry_tags:
+        continue
+    entry_date = entry['created_on'].date()
+    if date_from and date_to:
+      if not (date_from <= entry_date <= date_to):
+        continue
+    elif date_from:
+      if entry_date != date_from:
+        continue
+    results.append(entry)
+  return results
+
+@anvil.server.callable
+def delete_entry(entry_id):
+  entry = app_tables.entries.get_by_id(entry_id)
+  if entry:
+    entry.delete()
+
+@anvil.server.callable
+def update_entry(entry_id, title, body, tags):
+  entry = app_tables.entries.get_by_id(entry_id)
+  if entry:
+    entry['title'] = title
+    entry['body'] = body
+    entry['tags'] = tags
+    return "success"
+  return "error"
+
+
+@anvil.server.callable
+def get_all_tags():
+  user = anvil.users.get_user()
+  entries = app_tables.entries.search(user=user)
+  all_tags = set()
+  for entry in entries:
+    if entry['tags']:
+      for tag in entry['tags']:
+        all_tags.add(tag)
+  return sorted(list(all_tags))
+
+@anvil.server.callable
+def get_entries_multi_tag(keyword, tags, date_from, date_to):
+  user = anvil.users.get_user()
+  entries = app_tables.entries.search(
+    tables.order_by("created_on", ascending=False),
+    user=user
+  )
+  results = []
+  for entry in entries:
+    if keyword and keyword.lower() not in entry['title'].lower() and keyword.lower() not in entry['body'].lower():
+      continue
+    if tags:
+      entry_tags = [t.lower() for t in (entry['tags'] or [])]
+      if not all(t.lower() in entry_tags for t in tags):
+        continue
+    entry_date = entry['created_on'].date()
+    if date_from and date_to:
+      if not (date_from <= entry_date <= date_to):
+        continue
+    elif date_from:
+      if entry_date != date_from:
+        continue
+    results.append(entry)
+  return results

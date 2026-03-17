@@ -1,6 +1,6 @@
 components:
 - layout_properties: {grid_position: 'JYYDRL,NKTGRI EGHZYJ,KPIKQC'}
-  name: current
+  name: lbl_email
   properties: {text: 'Email:'}
   type: Label
 - layout_properties: {grid_position: 'JYYDRL,NKTGRI ZNGWWK,IRAPTL'}

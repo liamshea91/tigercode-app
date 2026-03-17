@@ -9,13 +9,50 @@ from anvil.tables import app_tables
 class Settings(SettingsTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
+
+    self.background = "#494547"
+
+    for lbl in [self.lbl_current_username, self.lbl_current_email]:
+      lbl.foreground = "#d4b2e4"
+      lbl.font = "Libre Baskerville"
+      lbl.font_size = 14
+      lbl.align = "center"
+
     self.lbl_error.text = ""
+    self.lbl_error.foreground = "#d4b2e4"
+    self.lbl_error.font = "Red Hat Text"
+    self.lbl_error.font_size = 12
+    self.lbl_error.align = "center"
+
     self.lbl_success.text = ""
+    self.lbl_success.foreground = "#d4b2e4"
+    self.lbl_success.font = "Red Hat Text"
+    self.lbl_success.font_size = 12
+    self.lbl_success.align = "center"
+
+    for tb in [self.tb_current_password, self.tb_new_username, self.tb_confirm_username, self.tb_new_password, self.tb_confirm_password]:
+      tb.background = "#ececec"
+      tb.foreground = "#3b3b3b"
+      tb.font = "Red Hat Text"
+      tb.font_size = 14
+      tb.align = "center"
+
     self.tb_current_password.placeholder = "Current Password"
     self.tb_new_username.placeholder = "New Username"
     self.tb_confirm_username.placeholder = "Confirm New Username"
     self.tb_new_password.placeholder = "New Password"
     self.tb_confirm_password.placeholder = "Confirm New Password"
+
+    for btn in [self.btn_save, self.btn_back]:
+      btn.background = "#d4b2e4"
+      btn.foreground = "#49326b"
+      btn.font = "Libre Baskerville"
+      btn.font_size = 14
+      btn.bold = True
+
+    self.btn_save.text = "Save Changes"
+    self.btn_back.text = "Back"
+
     user = anvil.users.get_user()
     if user:
       self.lbl_current_username.text = user['username']

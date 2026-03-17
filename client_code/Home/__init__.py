@@ -1,14 +1,32 @@
 from ._anvil_designer import HomeTemplate
 from anvil import *
-import anvil.server
 import anvil.users
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
+import anvil.server
 
 class Home(HomeTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
+
+    self.background = "#494547"
+
+    self.lbl_welcome.foreground = "#d4b2e4"
+    self.lbl_welcome.font = "Libre Baskerville"
+    self.lbl_welcome.font_size = 28
+    self.lbl_welcome.bold = True
+    self.lbl_welcome.align = "center"
+
+    for btn in [self.btn_new_entry, self.btn_past_entries, self.btn_settings, self.btn_logout]:
+      btn.background = "#d4b2e4"
+      btn.foreground = "#49326b"
+      btn.font = "Libre Baskerville"
+      btn.font_size = 14
+      btn.bold = True
+
+    self.btn_new_entry.text = "New Entry"
+    self.btn_past_entries.text = "Past Entries"
+    self.btn_settings.text = "Settings"
+    self.btn_logout.text = "Log Out"
+
     user = anvil.users.get_user()
     if user:
       self.lbl_welcome.text = "Welcome, " + user['username'] + "!"

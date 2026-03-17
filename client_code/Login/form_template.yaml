@@ -1,4 +1,8 @@
 components:
+- layout_properties: {grid_position: 'AARXVG,DGTBLQ'}
+  name: lbl_title
+  properties: {}
+  type: Label
 - layout_properties: {grid_position: 'XHMVJW,KVVVZQ'}
   name: tb_login
   properties: {}
@@ -7,10 +11,6 @@ components:
   name: tb_password
   properties: {}
   type: TextBox
-- layout_properties: {grid_position: 'ZFFGBV,RHVWFD'}
-  name: lbl_error
-  properties: {}
-  type: Label
 - layout_properties: {grid_position: 'EICXZN,RAMLAL'}
   name: btn_login
   properties: {text: Log in}
@@ -19,5 +19,9 @@ components:
   name: btn_go_create
   properties: {text: 'Don''t have an account? Sign up'}
   type: Button
+- layout_properties: {grid_position: 'DBNWVR,NSVZNI'}
+  name: lbl_error
+  properties: {}
+  type: Label
 container: {type: ColumnPanel}
 is_package: true

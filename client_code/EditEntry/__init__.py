@@ -1,4 +1,4 @@
-from ._anvil_designer import NewEntryTemplate
+from ._anvil_designer import EditEntryTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -6,9 +6,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class NewEntry(NewEntryTemplate):
-  def __init__(self, **properties):
+class EditEntry(EditEntryTemplate):
+  def __init__(self, entry=None, **properties):
     self.init_components(**properties)
+    self.entry = entry
 
     self.background = "#494547"
 
@@ -45,10 +46,13 @@ class NewEntry(NewEntryTemplate):
       btn.bold = True
 
     self.btn_word_bank.text = "Word Bank"
-    self.btn_save.text = "Save Entry"
+    self.btn_save.text = "Save Changes"
     self.btn_back.text = "Back"
 
-    self.selected_tags = []
+    self.selected_tags = list(entry['tags']) if entry and entry['tags'] else []
+    self.tb_title.text = entry['title'] if entry else ""
+    self.ta_body.text = entry['body'] if entry else ""
+    self.update_tags_display()
     self.panel_word_bank.visible = False
     self.load_word_bank()
 
@@ -88,6 +92,7 @@ class NewEntry(NewEntryTemplate):
         word_btn.foreground = "#49326b"
         word_btn.font = "Red Hat Text"
         word_btn.font_size = 13
+        word_btn.bold = word in self.selected_tags
         word_btn.set_event_handler('click', self.word_clicked)
         word_panel.add_component(word_btn)
       flow_words.add_component(word_panel)
@@ -131,18 +136,18 @@ class NewEntry(NewEntryTemplate):
       self.lbl_error.text = "Please enter a title and body for your entry."
       return
 
-    confirmed = confirm("Ready to save your entry?")
+    confirmed = confirm("Save changes to this entry?")
     if not confirmed:
       return
 
-    result = anvil.server.call('save_entry', title, body, self.selected_tags)
+    result = anvil.server.call('update_entry', self.entry.get_id(), title, body, self.selected_tags)
 
     if result == "success":
-      alert("🎉 Entry saved! Great job writing today!")
-      open_form('Home')
+      alert("✅ Entry updated!")
+      open_form('PastEntries')
     else:
       self.lbl_error.text = "Something went wrong. Please try again."
 
   @handle("btn_back", "click")
   def btn_back_click(self, **event_args):
-    open_form('Home')
+    open_form('PastEntries')

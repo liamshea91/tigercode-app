@@ -1,0 +1,19 @@
+components:
+- layout_properties: {grid_position: 'LWHZWO,CJFDZX'}
+  name: btn_view
+  properties: {text: View}
+  type: Button
+- layout_properties: {grid_position: 'LWHZWO,GWOVZM XEGKYD,XTMNHQ'}
+  name: lbl_title
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'LWHZWO,GWOVZM TVPOPY,UERNUH'}
+  name: lbl_date
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'LWHZWO,GWOVZM LJQHGV,QMUMYV'}
+  name: lbl_tags
+  properties: {}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true
