@@ -138,10 +138,15 @@ class NewEntry(NewEntryTemplate):
     result = anvil.server.call('save_entry', title, body, self.selected_tags)
 
     if result == "success":
-      alert("🎉 Entry saved! Great job writing today!")
-      open_form('Home')
+      streak_data = anvil.server.call('update_streak')
+    if streak_data['first_today']:
+      if streak_data['current_streak'] == 1:
+        alert("🎉 Great job writing today! You've started a new streak!")
+      else:
+        alert("🎉 Amazing! You're on a " + str(streak_data['current_streak']) + " day streak! Keep it up!")
     else:
-      self.lbl_error.text = "Something went wrong. Please try again."
+      alert("🎉 Entry saved! Great job writing today!")
+    open_form('Home')
 
   @handle("btn_back", "click")
   def btn_back_click(self, **event_args):

@@ -11,6 +11,10 @@ components:
   name: btn_past_entries
   properties: {text: Past entries}
   type: Button
+- layout_properties: {grid_position: 'XCXVZF,RDYRHG'}
+  name: btn_stats
+  properties: {text: Streak info}
+  type: Button
 - event_bindings: {}
   layout_properties: {grid_position: 'USPJPN,HLXGOX'}
   name: btn_settings

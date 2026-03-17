@@ -15,7 +15,7 @@ class Home(HomeTemplate):
     self.lbl_welcome.bold = True
     self.lbl_welcome.align = "center"
 
-    for btn in [self.btn_new_entry, self.btn_past_entries, self.btn_settings, self.btn_logout]:
+    for btn in [self.btn_new_entry, self.btn_past_entries, self.btn_settings, self.btn_stats, self.btn_logout]:
       btn.background = "#d4b2e4"
       btn.foreground = "#49326b"
       btn.font = "Libre Baskerville"
@@ -25,6 +25,7 @@ class Home(HomeTemplate):
     self.btn_new_entry.text = "New Entry"
     self.btn_past_entries.text = "Past Entries"
     self.btn_settings.text = "Settings"
+    self.btn_stats.text = "Stats"
     self.btn_logout.text = "Log Out"
 
     user = anvil.users.get_user()
@@ -44,6 +45,10 @@ class Home(HomeTemplate):
   @handle("btn_settings", "click")
   def btn_settings_click(self, **event_args):
     open_form('Settings')
+
+  @handle("btn_stats", "click")
+  def btn_stats_click(self, **event_args):
+    open_form('Stats')
 
   @handle("btn_logout", "click")
   def btn_logout_click(self, **event_args):

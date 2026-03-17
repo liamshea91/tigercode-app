@@ -1,0 +1,39 @@
+components:
+- layout_properties: {grid_position: 'YJGJEQ,PYVYUX'}
+  name: lbl_title
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'WQSUNA,XMAPKR'}
+  name: label_1
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'DBEFNM,VXFNNF'}
+  name: label_2
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'DEHNGA,TQJRWN'}
+  name: label_3
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'XMFVBC,MDIXRJ'}
+  name: label_4
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'BTBKYH,MHRAKB'}
+  name: label_5
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'ORAUCP,FXEAKA'}
+  name: label_6
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'AKOZSZ,IOUPUU'}
+  name: label_7
+  properties: {align: center}
+  type: Label
+- layout_properties: {grid_position: 'XXLIMQ,NNMKGU'}
+  name: btn_back
+  properties: {text: Back}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true

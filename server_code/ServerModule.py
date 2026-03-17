@@ -165,3 +165,71 @@ def get_all_tags():
       for tag in entry['tags']:
         all_tags.add(tag)
   return sorted(list(all_tags))
+
+@anvil.server.callable
+def get_user_stats():
+  user = anvil.users.get_user()
+  stats = app_tables.user_stats.get(user=user)
+  if not stats:
+    return None
+  return {
+    'current_streak': stats['current_streak'],
+    'longest_streak': stats['longest_streak'],
+    'streak_started': stats['streak_started'],
+    'first_entry': stats['first_entry'],
+    'total_entries': stats['total_entries']
+  }
+
+@anvil.server.callable
+def update_streak():
+  from datetime import datetime, date, timedelta
+  user = anvil.users.get_user()
+  today = date.today()
+
+  stats = app_tables.user_stats.get(user=user)
+
+  # Check if there's already an entry today
+  entries_today = [
+    e for e in app_tables.entries.search(user=user)
+    if e['created_on'].date() == today
+  ]
+
+  # More than 1 means this isn't the first entry today
+  first_today = len(entries_today) == 1
+
+  if not stats:
+    # First ever entry
+    app_tables.user_stats.add_row(
+      user=user,
+      current_streak=1,
+      longest_streak=1,
+      streak_started=datetime.now(),
+      first_entry=datetime.now(),
+      total_entries=1
+    )
+    return {'current_streak': 1, 'first_today': True}
+
+    # Update total entries
+  stats['total_entries'] = stats['total_entries'] + 1
+
+  if not first_today:
+    return {'current_streak': stats['current_streak'], 'first_today': False}
+
+    # Check if yesterday had an entry
+  yesterday = today - timedelta(days=1)
+  entries_yesterday = [
+    e for e in app_tables.entries.search(user=user)
+    if e['created_on'].date() == yesterday
+  ]
+
+  if entries_yesterday:
+    # Continue streak
+    stats['current_streak'] = stats['current_streak'] + 1
+    if stats['current_streak'] > stats['longest_streak']:
+      stats['longest_streak'] = stats['current_streak']
+  else:
+    # Reset streak
+    stats['current_streak'] = 1
+    stats['streak_started'] = datetime.now()
+
+  return {'current_streak': stats['current_streak'], 'first_today': True}
