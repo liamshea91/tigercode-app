@@ -1,9 +1,7 @@
 from ._anvil_designer import CreateAccountTemplate
 from anvil import *
 import anvil.users
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
+import anvil.server
 
 class CreateAccount(CreateAccountTemplate):
   def __init__(self, **properties):
@@ -20,18 +18,13 @@ class CreateAccount(CreateAccountTemplate):
       self.lbl_error.text = "All fields are required."
       return
 
-    if anvil.server.call('check_username_taken', username):
-      self.lbl_error.text = "That username is already taken."
-      return
+    result = anvil.server.call('create_user', username, email, password)
 
-    try:
-      anvil.users.signup_with_email(email, password)
-      user = anvil.users.get_user()
-      user['username'] = username
+    if result == "username_taken":
+      self.lbl_error.text = "That username is already taken."
+    elif result == "success":
       alert("Account created! Please log in.")
       open_form('Login')
-    except Exception as e:
-      self.lbl_error.text = str(e)
 
   @handle("btn_go_login", "click")
   def btn_go_login_click(self, **event_args):

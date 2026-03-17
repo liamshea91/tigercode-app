@@ -2,8 +2,20 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import anvil.server
 
 @anvil.server.callable
-def check_username_taken(username):
+def create_user(username, email, password):
   existing = app_tables.users.get(username=username)
-  return existing is not None
+  if existing:
+    return "username_taken"
+
+    # Sign up the user
+  anvil.users.signup_with_email(email, password)
+
+  # Get the user row directly from the table instead
+  user = app_tables.users.get(email=email)
+  if user:
+    user['username'] = username
+
+  return "success"
