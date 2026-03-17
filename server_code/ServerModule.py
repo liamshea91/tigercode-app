@@ -40,22 +40,32 @@ def login_with_username_or_email(username_or_email, password):
     return "invalid"
 
 @anvil.server.callable
-def update_user_settings(new_username, new_email, new_password):
+def validate_settings(current_password, new_username):
   user = anvil.users.get_user()
+  # Check current password
+  try:
+    anvil.users.login_with_email(user['email'], current_password)
+  except Exception:
+    return "wrong_password"
+    # Check username availability
+  if new_username:
+    existing = app_tables.users.get(username=new_username)
+    if existing and existing != user:
+      return "username_taken"
+  return "valid"
 
+@anvil.server.callable
+def update_user_settings(current_password, new_username, new_password):
+  user = anvil.users.get_user()
+  try:
+    anvil.users.login_with_email(user['email'], current_password)
+  except Exception:
+    return "wrong_password"
   if new_username:
     existing = app_tables.users.get(username=new_username)
     if existing and existing != user:
       return "username_taken"
     user['username'] = new_username
-
-  if new_email:
-    existing = app_tables.users.get(email=new_email)
-    if existing and existing != user:
-      return "email_taken"
-    user['email'] = new_email
-
   if new_password:
     anvil.users.reset_password(user['email'], new_password)
-
   return "success"

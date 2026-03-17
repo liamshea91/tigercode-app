@@ -7,6 +7,9 @@ class CreateAccount(CreateAccountTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     self.lbl_error.text = ""
+    self.tb_username.placeholder = "Username"
+    self.tb_email.placeholder = "Email"
+    self.tb_password.placeholder = "Password"
     anvil.server.call('create_default_admin')
 
   @handle("btn_create", "click")

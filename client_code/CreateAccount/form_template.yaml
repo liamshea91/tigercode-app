@@ -1,16 +1,20 @@
 components:
 - layout_properties: {grid_position: 'WAJLWR,JDTOQM'}
   name: tb_username
-  properties: {}
+  properties: {placeholder: Enter Username}
   type: TextBox
 - layout_properties: {grid_position: 'GJRNIA,QMPXSO'}
   name: tb_email
-  properties: {}
+  properties: {placeholder: Enter Email}
   type: TextBox
 - layout_properties: {grid_position: 'OSORNP,YDMZCN'}
   name: tb_password
-  properties: {}
+  properties: {placeholder: Enter Password}
   type: TextBox
+- layout_properties: {grid_position: 'GZKUYY,IHJAPQ'}
+  name: lbl_notice
+  properties: {text: 'Note: Your email cannot be changed after account creation. Your username and password can be changed in Settings.'}
+  type: Label
 - layout_properties: {grid_position: 'NZLHOA,QMATFZ'}
   name: lbl_error
   properties: {}

@@ -1,20 +1,49 @@
 components:
-- layout_properties: {grid_position: 'UPAZGN,PECMFJ'}
-  name: miscUser
-  properties: {text: 'Current username:'}
+- layout_properties: {grid_position: 'JYYDRL,NKTGRI EGHZYJ,KPIKQC'}
+  name: current
+  properties: {text: 'Email:'}
   type: Label
-- layout_properties: {grid_position: 'UPAZGN,BRLNFR'}
+- layout_properties: {grid_position: 'JYYDRL,NKTGRI ZNGWWK,IRAPTL'}
   name: lbl_username
+  properties: {text: 'Username: '}
+  type: Label
+- layout_properties: {grid_position: 'JYYDRL,HFLCSP NGVQCL,LLGHWO'}
+  name: lbl_current_username
+  properties: {text: ''}
+  type: Label
+- layout_properties: {grid_position: 'JYYDRL,HFLCSP FDWKEN,GRCYWM'}
+  name: lbl_current_email
   properties: {}
   type: Label
-- layout_properties: {grid_position: 'PJZQBS,GOYTMX'}
-  name: miscEmail
-  properties: {text: 'Current email:'}
+- layout_properties: {grid_position: 'UPAZGN,QQBSPA'}
+  name: change_username
+  properties: {text: Change Username}
   type: Label
-- layout_properties: {grid_position: 'PJZQBS,GGTBND'}
-  name: lbl_email
-  properties: {}
+- layout_properties: {grid_position: 'UPAZGN,BRLNFR LQZKHS,SGYPHR'}
+  name: tb_new_username
+  properties: {placeholder: New Username}
+  type: TextBox
+- layout_properties: {grid_position: 'UPAZGN,BRLNFR KCMPFX,JHANSV'}
+  name: tb_confirm_username
+  properties: {placeholder: Confirm Username}
+  type: TextBox
+- layout_properties: {grid_position: 'MEFHYA,ZTVRAJ'}
+  name: change_password
+  properties: {text: Change Password}
   type: Label
+- layout_properties: {grid_position: 'MEFHYA,LASAJA EHUOJF,DTYYHL'}
+  name: tb_current_password
+  properties: {placeholder: Current Password}
+  type: TextBox
+- event_bindings: {}
+  layout_properties: {grid_position: 'MEFHYA,LASAJA LZLTHU,KOJCLN'}
+  name: tb_new_password
+  properties: {placeholder: New Password}
+  type: TextBox
+- layout_properties: {grid_position: 'MEFHYA,LASAJA LLBPNZ,RYSFQF'}
+  name: tb_confirm_password
+  properties: {placeholder: Confirm Password}
+  type: TextBox
 - layout_properties: {grid_position: 'PUWOBZ,QSAPTW'}
   name: lbl_error
   properties: {}
@@ -23,21 +52,13 @@ components:
   name: lbl_success
   properties: {}
   type: Label
-- layout_properties: {grid_position: 'NRNKZK,SLLIKO'}
-  name: button_2
-  properties: {text: button_2}
+- layout_properties: {grid_position: 'YUHHXY,ZPQVML'}
+  name: btn_save
+  properties: {text: Save Changes}
   type: Button
-- layout_properties: {grid_position: 'IYRZUI,JWUHLX'}
-  name: button_1
-  properties: {text: button_1}
+- layout_properties: {grid_position: 'KRYCJT,YZJMCQ'}
+  name: btn_back
+  properties: {text: Back}
   type: Button
-- layout_properties: {grid_position: 'VFUFBH,DIUXPO'}
-  name: tb_new_email
-  properties: {}
-  type: TextBox
-- layout_properties: {grid_position: 'GRLKRG,YWDOAN'}
-  name: tb_current_password
-  properties: {}
-  type: TextBox
 container: {type: ColumnPanel}
 is_package: true

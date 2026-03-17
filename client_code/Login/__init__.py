@@ -10,6 +10,8 @@ class Login(LoginTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     self.lbl_error.text = ""
+    self.tb_login.placeholder = "Username or Email"
+    self.tb_password.placeholder = "Password"
 
   @handle("btn_login", "click")
   def btn_login_click(self, **event_args):
