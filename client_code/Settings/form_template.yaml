@@ -1,3 +1,43 @@
-components: []
+components:
+- layout_properties: {grid_position: 'UPAZGN,PECMFJ'}
+  name: miscUser
+  properties: {text: 'Current username:'}
+  type: Label
+- layout_properties: {grid_position: 'UPAZGN,BRLNFR'}
+  name: lbl_username
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'PJZQBS,GOYTMX'}
+  name: miscEmail
+  properties: {text: 'Current email:'}
+  type: Label
+- layout_properties: {grid_position: 'PJZQBS,GGTBND'}
+  name: lbl_email
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'PUWOBZ,QSAPTW'}
+  name: lbl_error
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'ECLNBR,JOVHSM'}
+  name: lbl_success
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'NRNKZK,SLLIKO'}
+  name: button_2
+  properties: {text: button_2}
+  type: Button
+- layout_properties: {grid_position: 'IYRZUI,JWUHLX'}
+  name: button_1
+  properties: {text: button_1}
+  type: Button
+- layout_properties: {grid_position: 'VFUFBH,DIUXPO'}
+  name: tb_new_email
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'GRLKRG,YWDOAN'}
+  name: tb_current_password
+  properties: {}
+  type: TextBox
 container: {type: ColumnPanel}
 is_package: true
