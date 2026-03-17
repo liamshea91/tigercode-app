@@ -42,12 +42,10 @@ def login_with_username_or_email(username_or_email, password):
 @anvil.server.callable
 def validate_settings(current_password, new_username):
   user = anvil.users.get_user()
-  # Check current password
   try:
     anvil.users.login_with_email(user['email'], current_password)
   except Exception:
     return "wrong_password"
-    # Check username availability
   if new_username:
     existing = app_tables.users.get(username=new_username)
     if existing and existing != user:
@@ -70,10 +68,10 @@ def update_user_settings(current_password, new_username, new_password):
     anvil.users.reset_password(user['email'], new_password)
   return "success"
 
-  @anvil.server.callable
-  def get_word_bank():
-    words = app_tables.word_bank.search()
-    return [(row['word'], row['category']) for row in words]
+@anvil.server.callable
+def get_word_bank():
+  words = app_tables.word_bank.search()
+  return [(row['word'], row['category']) for row in words]
 
 @anvil.server.callable
 def save_entry(title, body, tags):

@@ -20,21 +20,62 @@ class NewEntry(NewEntryTemplate):
   def load_word_bank(self):
     words = anvil.server.call('get_word_bank')
     self.panel_word_bank.clear()
+
+    categories = {}
     for word, category in words:
-      btn = Button(text=word + " (" + category + ")")
-      btn.tag = word
-      btn.set_event_handler('click', self.word_clicked)
-      self.panel_word_bank.add_component(btn)
+      if category not in categories:
+        categories[category] = []
+      categories[category].append(word)
+
+    flow_categories = FlowPanel()
+    self.panel_word_bank.add_component(flow_categories)
+
+    flow_words = FlowPanel()
+    self.panel_word_bank.add_component(flow_words)
+
+    for category, word_list in categories.items():
+      cat_btn = Button(text="▶ " + category)
+      cat_btn.tag = category
+      cat_btn.set_event_handler('click', self.category_clicked)
+      flow_categories.add_component(cat_btn)
+
+      word_panel = ColumnPanel()
+      word_panel.tag = category
+      word_panel.visible = False
+      for word in word_list:
+        word_btn = Button(text=word)
+        word_btn.tag = word
+        word_btn.set_event_handler('click', self.word_clicked)
+        word_panel.add_component(word_btn)
+      flow_words.add_component(word_panel)
+
+  def category_clicked(self, sender, **event_args):
+    category = sender.tag
+    for component in self.panel_word_bank.get_components():
+      if isinstance(component, FlowPanel):
+        for inner in component.get_components():
+          if hasattr(inner, 'tag') and inner.tag == category and isinstance(inner, ColumnPanel):
+            inner.visible = not inner.visible
+            sender.text = ("▼ " if inner.visible else "▶ ") + category
+            break
+
+  def update_tags_display(self):
+    if self.selected_tags:
+      self.lbl_tags.text = "Tags: " + ", ".join(self.selected_tags)
+    else:
+      self.lbl_tags.text = ""
 
   def word_clicked(self, sender, **event_args):
     word = sender.tag
-    if word not in self.selected_tags:
+    if word in self.selected_tags:
+      # Remove tag if already selected
+      self.selected_tags.remove(word)
+      sender.bold = False
+    else:
+      # Add tag
       self.selected_tags.append(word)
-      self.lbl_tags.text = "Tags: " + ", ".join(self.selected_tags)
-    current = self.ta_body.text or ""
-    if current and not current.endswith(" "):
-      current += " "
-    self.ta_body.text = current + word
+      sender.bold = True
+    self.update_tags_display()
 
   @handle("btn_word_bank", "click")
   def btn_word_bank_click(self, **event_args):
